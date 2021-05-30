@@ -1,0 +1,108 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+
+.app_header {
+  background-color: #ecf0f1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0px;
+  z-index: 999;
+  padding: 4px 0px;
+  box-shadow: 0px 1px 2px 0px #bdc3c7;
+}
+.app_header h1 {
+  font-family: "Lato", sans-serif;
+  color: #2ecc71;
+  letter-spacing: 3px;
+  margin-left: 5px;
+}
+.app_header h1:hover {
+  cursor: pointer;
+}
+.app_post_container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px 0px;
+  margin-left: 10px;
+}
+
+.app_signUp {
+  display: flex;
+  flex-direction: column;
+}
+.app_signUp button {
+  margin: 5px 0px;
+}
+
+.login_btn {
+  padding: 3px 8px;
+  margin-right: 5px;
+}
+
+.image_upload {
+  display: flex;
+  width: 270px;
+  height: 20%;
+  z-index: 1;
+  align-items: center;
+  justify-content: center;
+  background-color: #ecf0f1;
+  margin-right: 20px;
+  position: sticky;
+  top: 12%;
+}
+.altImage_Upload {
+  padding: 5px 0px;
+  color: #2ecc71;
+  letter-spacing: 2px;
+  font-size: 13px;
+}
+.main_container {
+  display: flex;
+  padding: 3vw 3vw;
+}
+
+@media only screen and (max-width: 750px) {
+  .main_container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .image_upload {
+    position: unset;
+    width: 300px;
+  }
+  .app_post_container {
+    margin-left: 0px;
+  }
+}
+@media only screen and (max-width: 430px) {
+  .main_container {
+    padding: 0px;
+  }
+  .image_upload {
+    margin-right: 0px;
+    width: 100%;
+    padding: 10px 0px;
+  }
+  .app_post_container {
+    width: 95%;
+    align-items: center;
+  }
+  .app_header h1 {
+    font-size: 22px;
+  }
+  .altImage_Upload {
+    font-size: 4vw;
+  }
+  .MuiButtonBase-root,
+  .MuiButton-root,
+  .MuiButton-contained,
+  .login_btn {
+    padding: 3px 3px;
+    font-size: 12px;
+  }
+}
