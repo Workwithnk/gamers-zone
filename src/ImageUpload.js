@@ -64,7 +64,7 @@ function ImageUpload({ username }) {
         onChange={handleChange}
       />
       <Button
-        disabled={!caption}
+        disabled={!image}
         variant="contained"
         className="imageUpload_btn"
         color="primary"
