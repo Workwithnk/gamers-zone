@@ -1,12 +1,15 @@
 import { Avatar, Button } from "@material-ui/core";
-import firebase from "firebase";
+// import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
+// import firebase from "firebase";
 import React, { useEffect, useState } from "react";
 import { db } from "./firebase";
+import LikeButton from "./LikeButton";
 import "./Post.css";
 
 function Post({ postId, user, username, imageUrl, caption }) {
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState("");
+  // const [userLike, setUserLike] = useState(0);
   useEffect(() => {
     let unsubscribe;
     if (postId) {
@@ -14,10 +17,14 @@ function Post({ postId, user, username, imageUrl, caption }) {
         .collection("posts")
         .doc(postId)
         .collection("comments")
-        .orderBy("timestamp", "desc")
+        .orderBy("like", "desc")
         .onSnapshot((snapshot) => {
           setComments(
-            snapshot.docs.map((doc) => ({ id: doc.id, comment: doc.data() }))
+            snapshot.docs.map((doc) => ({
+              id: doc.id,
+              comment: doc.data(),
+              like: doc.data(),
+            }))
           );
         });
     }
@@ -31,7 +38,7 @@ function Post({ postId, user, username, imageUrl, caption }) {
     db.collection("posts").doc(postId).collection("comments").add({
       text: comment,
       username: user.displayName,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      like: 0,
     });
     setComment("");
   };
@@ -49,39 +56,53 @@ function Post({ postId, user, username, imageUrl, caption }) {
 
       <img className="post_image" src={imageUrl} alt="post Image" />
 
-      <h4 className="post_text">
-        <strong>{username} : </strong>
-        {caption}
-      </h4>
-      <div className="post_comments_list">
-        {comments.map(({ id, comment }) => {
-          return (
-            <p key={id}>
-              <strong>{comment.username} : </strong>
-              {comment.text}
-            </p>
-          );
-        })}
+      <div className="post_text">
+        <p>
+          <strong>{username} : </strong>
+          {caption}
+        </p>
       </div>
       {user && (
-        <form className="post_commentBox">
-          <input
-            className="comment_input"
-            type="text"
-            placeholder="enter your suggetions.. "
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-          />
-          <Button
-            variant="contained"
-            color="primary"
-            className="comment_button"
-            disabled={!comment}
-            onClick={postComment}
-          >
-            Add
-          </Button>
-        </form>
+        <div className="post_comment_container">
+          <div className="post_comments_list">
+            {comments.map(({ id, comment }) => {
+              return (
+                <div className="post_comment" key={id}>
+                  <div>
+                    <p className="comment_text">
+                      <strong>{comment.username} : </strong>
+                    </p>
+                    {comment.text}
+                  </div>
+                  <LikeButton
+                    postId={postId}
+                    commentId={id}
+                    commentLike={comment.like}
+                  />
+                </div>
+              );
+            })}
+          </div>
+
+          <form className="post_commentBox">
+            <input
+              className="comment_input"
+              type="text"
+              placeholder="enter your suggetions.. "
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+            />
+            <Button
+              variant="contained"
+              color="primary"
+              className="comment_button"
+              disabled={!comment}
+              onClick={postComment}
+            >
+              Add
+            </Button>
+          </form>
+        </div>
       )}
     </div>
   );

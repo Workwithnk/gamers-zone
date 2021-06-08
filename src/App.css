@@ -64,7 +64,23 @@
   display: flex;
   padding: 3vw 3vw;
 }
-
+.backToTop {
+  position: fixed;
+  bottom: 8%;
+  right: 8%;
+  background-color: #2ecc71;
+  border-radius: 20px;
+  transition: ease 1s;
+  outline: none;
+  border: none;
+}
+.backToTop:hover {
+  cursor: pointer;
+}
+.backToTopIcon {
+  padding: 7px 10px;
+  color: white;
+}
 @media only screen and (max-width: 750px) {
   .main_container {
     flex-direction: column;

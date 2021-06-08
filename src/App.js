@@ -1,6 +1,7 @@
 import { Button, makeStyles, Modal } from "@material-ui/core";
 import { Input } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
+import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 
 import "./App.css";
 import { auth, db } from "./firebase";
@@ -91,7 +92,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className="App" id="App">
       <Modal open={openModal} onClose={() => setOpenModal(false)}>
         <div style={modalStyle} className={classes.paper}>
           <form className="app_signUp">
@@ -202,6 +203,7 @@ function App() {
             </h3>
           )}
         </div>
+
         <div className="app_post_container">
           {post.map(({ id, post }) => {
             return (
@@ -216,7 +218,13 @@ function App() {
             );
           })}
         </div>
+        <div className="backToTop">
+          <a href="#">
+            <ExpandLessIcon className="backToTopIcon" />
+          </a>
+        </div>
       </div>
+
       <Footer />
     </div>
   );
