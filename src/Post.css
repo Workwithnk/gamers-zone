@@ -54,6 +54,11 @@
   display: flex;
   flex-direction: column;
 }
+.post_comment:first-child {
+  background-color: #2ecc71;
+  box-shadow: 0px 0px 1px 0px #27ae60;
+  border: 1px solid #27ae60;
+}
 .post_comment {
   display: flex;
   align-items: center;

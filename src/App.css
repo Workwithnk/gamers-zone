@@ -68,7 +68,7 @@
   position: fixed;
   bottom: 8%;
   right: 8%;
-  background-color: #2ecc71;
+  background-color: rgba(46, 204, 112, 0.801);
   border-radius: 20px;
   transition: ease 1s;
   outline: none;
@@ -120,5 +120,9 @@
   .login_btn {
     padding: 3px 3px;
     font-size: 12px;
+  }
+  .backToTop {
+    right: 86%;
+    bottom: 10%;
   }
 }
