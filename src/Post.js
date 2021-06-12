@@ -39,10 +39,16 @@ function Post({ postId, user, username, imageUrl, caption }) {
       text: comment,
       username: user.displayName,
       like: 0,
+      disable: false,
+      // oldUserId: [
+      //   "c86o4VMp7ihZiDItU5lop7LKOEO2",
+      //   "3y2mnb0vtwb6PKVP4gUdxq3iEsk2",
+      //   "4d9OTFCXDdNmv8KyzmGjKkcf6B62",
+      // ],
     });
     setComment("");
   };
-
+  // console.log(user.uid);
   return (
     <div className="post">
       <div className="post_header">
@@ -78,6 +84,10 @@ function Post({ postId, user, username, imageUrl, caption }) {
                     postId={postId}
                     commentId={id}
                     commentLike={comment.like}
+                    user={user}
+                    username={comment.username}
+                    btnDisable={comment.disable}
+                    oldUserId={comment.oldUserId}
                   />
                 </div>
               );
